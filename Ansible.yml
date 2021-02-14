@@ -1,0 +1,31 @@
+---
+- name: install tomcat
+  hosts: build
+  become: yes
+
+  tasks:
+  - name: Ensure tomcat package is pesent
+    apt:
+      name: tomcat
+      state: present
+  
+  - name: Ensure jde is present
+    apt:
+      name: jde
+      state: present
+  
+  - name: Ensure maven package is present
+    apt:
+      name: maven
+      state: present
+  
+  - name: Ensure git package is present
+    apt:
+      name: git
+      state: present
+  
+  - name: Ensure buxfuse-sample-java-war-hello is present
+    git:
+      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      dest: /home/boxfuse-sample-java-war-hello
+      
