@@ -1,5 +1,5 @@
 ---
-- name: install tomcat
+- name: build webapp
   hosts: build
   become: yes
 
@@ -28,4 +28,15 @@
     git:
       repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
       dest: /home/boxfuse-sample-java-war-hello
-      
+
+- name: open webapp
+  hosts: web
+  become: yes
+
+  tasks:
+  - name: Ensure tomcat package is present
+    apt:
+      name: tomcat
+      state: present
+
+  - name: Ensure 
